@@ -64,7 +64,7 @@ function setCarnetsEntretiensSddMotorisationsRevisions(carnetsEntretiensSdd) {
       try {
         motorisations = JSON.parse(motorisations);
       } catch (err) {
-        console.log(`Problème (mais continue sans traitement) : setCarnetsEntretiensSddMotorisationsRevisions() : Problème de 'parsage' en JSON dans le fichier ${marque}/${model} qui sera ignoré.`);
+        console.error(`Problème (mais continue sans traitement) : setCarnetsEntretiensSddMotorisationsRevisions() : Problème de 'parsage' en JSON dans le fichier ${marque}/${model} qui sera ignoré.`);
         continue;
       }
 
