@@ -38,7 +38,11 @@ function getAllModelsTab() {
 }
 
 function getModelsFromMarqueTab(marque) {
-  return Object.keys(sdd[marque]);
+  let allModelsFromMarqueTab = sdd[marque];
+  if (allModelsFromMarqueTab) {
+    return Object.keys(sdd[marque]);
+  }
+  return [];
 }
 
 function getAllMotorsTab() {
@@ -87,7 +91,5 @@ function getRevisions(marque, model, motor) {
 
   return {};
 }
-
-console.log(getRevisions("Volvfo", "c30.json", "C30 1.6 100cv"));
 
 module.exports = { getAllMarquesTab, getAllModelsTab, getModelsFromMarqueTab, getAllMotorsFromMarqueTab, getAllMotorsTab, getRevisions, getAllMotorsFromMarqueModelTab };
