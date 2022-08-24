@@ -9,8 +9,9 @@
   "author": "Bozlak Fatih",
   "license": "ISC",
   "dependencies": {
-    "jest": "^28.1.x",
     "@types/jest": "^28.1.7",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "jest": "^28.1.x",
+    "node-fetch": "2.0"
   }
 }
