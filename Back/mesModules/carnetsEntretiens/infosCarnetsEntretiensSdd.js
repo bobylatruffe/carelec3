@@ -78,7 +78,7 @@ function getAllMotorsFromMarqueModelTab(sdd, marque, model) {
 
 // attention contrairement aux autres fonctions de ce module,
 // cette fonction retourne un objet remplit ou vide si erreur.
-function getRevisions(sdd, marque, model, motor) {
+function getRevisions(sdd, {marque, model, motor}) {
   let revisions = {};
 
   try {

@@ -78,10 +78,10 @@ describe("Obtenir des informations depuis la SDD", () => {
 
   test("Obtenir toutes les motorisations d'un modele donnée d'une marque donnée", () => { });
   test("Obtenir toutes l'ensemble des révisions (km et time) d'une marque, model, motor", () => { 
-    expect(getInfos.getRevisions(sdd, "Volvo", "xc90 1.json", "XC90 T6 AWD 272cv")).toHaveProperty("km");
-    expect(getInfos.getRevisions(sdd, "Volkswagen", "beetle.json", "(VW) Beetle 2.0 TSI 211cv")).toHaveProperty("km");
-    expect(getInfos.getRevisions(sdd, "Alfa Romeo", "147.json", "147 1.6 16V T.SPARK 120cv")).toHaveProperty("km");
+    expect(getInfos.getRevisions(sdd, {marque: "Volvo", model: "xc90 1.json", motor: "XC90 T6 AWD 272cv"})).toHaveProperty("km");
+    expect(getInfos.getRevisions(sdd, {marque: "Volkswagen", model: "beetle.json", motor: "(VW) Beetle 2.0 TSI 211cv"})).toHaveProperty("km");
+    expect(getInfos.getRevisions(sdd, {marque: "Alfa Romeo", model: "147.json", motor: "147 1.6 16V T.SPARK 120cv"})).toHaveProperty("km");
     
-    expect(getInfos.getRevisions(sdd, "lol", "mdr.json", "ptdr")).toEqual({});
+    expect(getInfos.getRevisions(sdd, {marque: "lol", model: "mdr.json", motor: "ptdr"})).toEqual({});
   });
 });
