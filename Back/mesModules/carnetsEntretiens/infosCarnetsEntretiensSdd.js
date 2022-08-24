@@ -16,10 +16,10 @@ getInfosgetAllMotorsFromMarqueTab("Audi");
 
  **/
 
-const initCarnetsEntretiensSdd = require('./initCarnetsEntretiensSdd');
-const sdd = initCarnetsEntretiensSdd();
+// const initCarnetsEntretiensSdd = require('./initCarnetsEntretiensSdd');
+// const sdd = initCarnetsEntretiensSdd();
 
-function getAllMarquesTab() {
+function getAllMarquesTab(sdd) {
   let allMarquesTab = [];
 
   if (allMarquesTab = Object.keys(sdd))
@@ -28,7 +28,7 @@ function getAllMarquesTab() {
   return [];
 }
 
-function getAllModelsTab() {
+function getAllModelsTab(sdd) {
   let allModels = [];
   for (marque of Object.keys(sdd)) {
     allModels.push(Object.keys(sdd[marque]));
@@ -37,7 +37,7 @@ function getAllModelsTab() {
   return allModels;
 }
 
-function getModelsFromMarqueTab(marque) {
+function getModelsFromMarqueTab(sdd, marque) {
   let allModelsFromMarqueTab = sdd[marque];
   if (allModelsFromMarqueTab) {
     return Object.keys(sdd[marque]);
@@ -45,10 +45,10 @@ function getModelsFromMarqueTab(marque) {
   return [];
 }
 
-function getAllMotorsTab() {
+function getAllMotorsTab(sdd) {
   let allMotors = [];
-  for (marque of getAllMarquesTab()) {
-    for (model of getModelsFromMarqueTab(marque)) {
+  for (marque of getAllMarquesTab(sdd)) {
+    for (model of getModelsFromMarqueTab(sdd, marque)) {
       for (motor of Object.keys(sdd[marque][model]))
         allMotors.push(motor);
     }
@@ -57,7 +57,7 @@ function getAllMotorsTab() {
   return allMotors;
 }
 
-function getAllMotorsFromMarqueTab(marque) {
+function getAllMotorsFromMarqueTab(sdd, marque) {
   let allMotorsFromMarque = [];
   for (model of getModelsFromMarqueTab(marque)) {
     allMotorsFromMarque.push(Object.keys(sdd[marque][model]));
@@ -66,7 +66,7 @@ function getAllMotorsFromMarqueTab(marque) {
   return allMotorsFromMarque;
 }
 
-function getAllMotorsFromMarqueModelTab(marque, model) {
+function getAllMotorsFromMarqueModelTab(sdd, marque, model) {
   let allMotorsFromMarqueModelTab = [];
   for (modelInSdd of getModelsFromMarqueTab(marque)) {
     if (model === modelInSdd)
@@ -78,7 +78,7 @@ function getAllMotorsFromMarqueModelTab(marque, model) {
 
 // attention contrairement aux autres fonctions de ce module,
 // cette fonction retourne un objet remplit ou vide si erreur.
-function getRevisions(marque, model, motor) {
+function getRevisions(sdd, marque, model, motor) {
   let revisions = {};
 
   try {
