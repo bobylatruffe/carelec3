@@ -26,6 +26,7 @@ toStandardiser("CITROËN BERLINGO 2.0 HDI 90 (90Ch)");
       null
  **/
 
+
 const { getModelsFromMarqueTab, getAllMotorsFromMarqueModelTab } = require('../carnetsEntretiens/infosCarnetsEntretiensSdd');
 
 function setCv({ traiter, enCours }) {
@@ -111,14 +112,14 @@ function setRomainToDecimal(structLibelle) {
   })
 }
 
-function setModele(structLibelle) {
+function setModele(sdd, structLibelle) {
   let potentielModel = structLibelle.enCours.join(" ");
 
   // tenter d'accorder les data pour BMW 
   if (structLibelle.traiter.marque === "Bmw")
     potentielModel = "serie " + potentielModel;
 
-  let modelsInSddFromMarque = getModelsFromMarqueTab(structLibelle.traiter.marque).map(elem => {
+  let modelsInSddFromMarque = getModelsFromMarqueTab(sdd, structLibelle.traiter.marque).map(elem => {
     return elem.toLowerCase().split(".")[0]; // supp le .json
   });
 
@@ -138,8 +139,9 @@ function setModele(structLibelle) {
   return true;
 }
 
-function setMotorisation(structLibelle) {
+function setMotorisation(sdd, structLibelle) {
   let allMotorsForModelInSddTab = getAllMotorsFromMarqueModelTab(
+    sdd,
     structLibelle.traiter.marque,
     structLibelle.traiter.modele[0] // si j'ai le temps je traiterai les autres cas possible, sinon je prend le 1er élément.
   );
@@ -203,7 +205,7 @@ function setMotorisation(structLibelle) {
   return structLibelle;
 }
 
-function toStandardiser(libelle) {
+function toStandardiser(sdd, libelle) {
   if (!libelle) {
     console.error("Error: toStandardiser() : aucun libellé n'est fournit.");
     return null;
@@ -225,12 +227,14 @@ function toStandardiser(libelle) {
 
   if (!setCv(structLibelle))
     return null;
+
   setMarque(structLibelle);
   setSuppInitules(structLibelle);
   setRomainToDecimal(structLibelle);
-  if (!setModele(structLibelle))
+  if (!setModele(sdd, structLibelle))
     return null;
-  if (!setMotorisation(structLibelle))
+
+  if (!setMotorisation(sdd, structLibelle))
     return null;
 
   return structLibelle.traiter;

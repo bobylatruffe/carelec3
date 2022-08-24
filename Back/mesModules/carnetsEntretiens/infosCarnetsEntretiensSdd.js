@@ -59,7 +59,7 @@ function getAllMotorsTab(sdd) {
 
 function getAllMotorsFromMarqueTab(sdd, marque) {
   let allMotorsFromMarque = [];
-  for (model of getModelsFromMarqueTab(marque)) {
+  for (model of getModelsFromMarqueTab(sdd, marque)) {
     allMotorsFromMarque.push(Object.keys(sdd[marque][model]));
   }
 
@@ -68,7 +68,7 @@ function getAllMotorsFromMarqueTab(sdd, marque) {
 
 function getAllMotorsFromMarqueModelTab(sdd, marque, model) {
   let allMotorsFromMarqueModelTab = [];
-  for (modelInSdd of getModelsFromMarqueTab(marque)) {
+  for (modelInSdd of getModelsFromMarqueTab(sdd, marque)) {
     if (model === modelInSdd)
       return Object.keys(sdd[marque][model])
   }
