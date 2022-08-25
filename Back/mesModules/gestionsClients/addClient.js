@@ -84,7 +84,7 @@ function addClient(userInfos) {
       hash |= 0;
     }
     return Math.abs(hash);
-  })(`${portable}+${email}`).toString();
+  })(`${portable}${email}`).toString();
 
   if (!checkIfExist(id))
     return null;
@@ -101,7 +101,7 @@ function addClient(userInfos) {
 
   console.log("Utilisateur ajouté");
 
-  return true;
+  return id;
 }
 
 module.exports = addClient;
