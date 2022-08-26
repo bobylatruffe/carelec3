@@ -36,7 +36,7 @@ const fs = require("fs");
 const path = require("path");
 const setCurrentRevision = require("./setCurrentRevision");
 
-function initRevision({ id, dateRevision, vehiculeInfos, revisionsAFaire }) {
+function initRevision(id, {dateRevision, vehiculeInfos, revisionsAFaire }) {
   let revisionProg = {
     [dateRevision]: {},
   };
