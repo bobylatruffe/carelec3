@@ -53,8 +53,21 @@ function setCurrentRevisionFait(id, aEteFait) {
 
   let currentRevisionDate = Object.keys(currentRevision)[0];
 
-  // je garde seulement que je ne modifie pas
+
   let currentRevisionFait = currentRevision[currentRevisionDate].fait;
+
+  // correction d'un beug que je n'avais pas anticiper
+  // faut que je garde les anciennes images !
+  let oldFait = currentRevisionFait.filter(elem => {
+    if (elem.intitule === aEteFait.intitule)
+      return elem;
+  })[0]
+
+  oldFait.imgs.forEach(img => {
+    aEteFait.imgs.push(img);
+  })
+  // fin de la correction
+
   currentRevisionFait = currentRevisionFait.filter(elem => {
     if (elem.intitule !== aEteFait.intitule)
       return elem;

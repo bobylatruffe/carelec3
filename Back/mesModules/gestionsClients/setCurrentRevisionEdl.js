@@ -45,25 +45,31 @@ function setCurrentRevisionEdl(id, type, data) {
   let currentRevisionDate = Object.keys(currentRevision)[0];
   let currentRevisionEdl = currentRevision[currentRevisionDate].etatDesLieux;
 
+  // Correction du même beug que pour setCurrentRevisionFait,
+  // garder les ancienne positions de 'croixRouge'
+
+  currentRevisionEdl[type].croixRouges.forEach(elem => data.croixRouges.push(elem));
+
+  // fin de correction
   // let currentRevisionType = currentRevisionEdl[type]
   currentRevision[currentRevisionDate].etatDesLieux[type] = data;
   if (!setCurrentRevision(id, currentRevision))
     return null;
 
-    console.log("Mise à jour etat des lieux ok")
+  console.log("Mise à jour etat des lieux ok")
   return true;
 }
 
 module.exports = setCurrentRevisionEdl;
 
-setCurrentRevisionEdl(148552793, "pickUp", {
-  "status": "start",
-  "realiserLe": null,
-  "croixRouges": [1, 2, 3]
-});
+// setCurrentRevisionEdl(148552793, "pickUp", {
+//   "status": "start",
+//   "realiserLe": null,
+//   "croixRouges": [1, 2, 3]
+// });
 
-setCurrentRevisionEdl(148552793, "dropUp", {
-  "status": "end",
-  "realiserLe": null,
-  "croixRouges": []
-});
+// setCurrentRevisionEdl(148552793, "dropUp", {
+//   "status": "end",
+//   "realiserLe": null,
+//   "croixRouges": []
+// });
