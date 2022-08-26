@@ -19,6 +19,8 @@ const path = require("path");
 
 const carnetsEntretiensPath = path.join(__dirname, "../../data/carnetsEntretiens/");
 
+let likeSingletonSdd = null;
+
 function getMarques(carnetsEntretiensPath) {
   let marquesDispoTab = null;
 
@@ -74,6 +76,11 @@ function setCarnetsEntretiensSddMotorisationsRevisions(carnetsEntretiensSdd) {
   }
 }
 
+function getCarnetsEntretiensSdd() {
+  if (likeSingletonSdd)
+    return likeSingletonSdd;
+}
+
 function initCarnetsEntretiensSdd() {
   let marquesDispoTab = null;
   try {
@@ -98,10 +105,10 @@ function initCarnetsEntretiensSdd() {
     return null;
   }
 
+  likeSingletonSdd = carnetsEntretiensSdd;
   return carnetsEntretiensSdd;
-
 }
 
 // initCarnetsEntretiensSdd();
 
-module.exports = initCarnetsEntretiensSdd;
+module.exports = { initCarnetsEntretiensSdd, getCarnetsEntretiensSdd }
