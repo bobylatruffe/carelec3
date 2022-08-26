@@ -65,8 +65,8 @@ function addRevisionProgToHistory(id) {
 
   setLastRevision(id);
   console.log("Historque des revisions mis à jour de l'user " + id)
+
+  return true;
 }
 
 module.exports = addRevisionProgToHistory;
-
-addRevisionProgToHistory(148552793)
