@@ -15,8 +15,11 @@ app.get('/', (_, resp) => {
 const carnetsEntretiensRoute = require("./routes/carnetsEntretiens/carnetsEntretiens");
 app.use("/api/carnetsEntretiens", carnetsEntretiensRoute);
 
-app.get("/*", (_, resp) => { 
-  return resp.status(404).send("404");
+const toStandardiserRoute = require("./routes/toStandardiser/toStandardiser");
+app.use("/api/toStandardiser", toStandardiserRoute);
+
+app.get("/*", (_, resp) => {
+  return resp.status(404).json({});
 })
 
 app.listen(PORT, () => {
