@@ -13,7 +13,7 @@ router.get("/marques", (_, resp) => {
     return resp.status(200).json(allMarques);
   }
 
-  return resp.status(500).send("Impossible de récupérer les marques");
+  return resp.status(500).json({});
 });
 
 router.get("/:marque", (req, resp) => {
@@ -23,7 +23,7 @@ router.get("/:marque", (req, resp) => {
   if (allModelsFromMarque.length != 0)
     return resp.json(allModelsFromMarque)
 
-  return resp.status(500).send("La marque fournit ne correspond à rien");
+  return resp.status(500).json({});
 });
 
 router.get("/:marque/:modele/", (req, resp) => {
@@ -34,7 +34,7 @@ router.get("/:marque/:modele/", (req, resp) => {
   if (allMotorsFromMarqueModelTab.length != 0)
     return resp.json(allMotorsFromMarqueModelTab)
 
-  return resp.status(500).send("Le modèle fournit n'est pas correct");
+  return resp.status(500).json({});
 });
 
 router.get("/:marque/:modele/:motor", (req, resp) => {
@@ -45,7 +45,7 @@ router.get("/:marque/:modele/:motor", (req, resp) => {
   }
 
   if (req.query.what && (req.query.what !== "km" && req.query.what !== "time"))
-    return resp.status(500).send("Impossible de récupérer les révisions, pb query what");
+    return resp.status(500).json({});
 
   let revisions = getRevisions(carnetsEntretiensSdd, forReqSdd)
   if (revisions !== {}) {
@@ -56,7 +56,7 @@ router.get("/:marque/:modele/:motor", (req, resp) => {
     return resp.json(revisions);
   }
 
-  return resp.status(500).send("Impossible de récupérer les révisions");
+  return resp.status(500).json({});
 });
 
 
