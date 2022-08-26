@@ -15,7 +15,7 @@ Ce fichier de test doit être complété !
 
  **/
 
-const initCarnetsEntretiensSdd = require("./initCarnetsEntretiensSdd");
+const {initCarnetsEntretiensSdd} = require("./initCarnetsEntretiensSdd");
 const getInfos = require("./infosCarnetsEntretiensSdd");
 const externalExec = require('child_process');
 const path = require("path");

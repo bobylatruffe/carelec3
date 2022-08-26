@@ -15,7 +15,7 @@ Ce fichier de test doit être complété !
 
  **/
 
-const initCarnetsEntretiensSdd = require('./initCarnetsEntretiensSdd');
+const {initCarnetsEntretiensSdd} = require('./initCarnetsEntretiensSdd');
 const fs = require("fs");
 const path = require("path");
 
