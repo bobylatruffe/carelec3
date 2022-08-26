@@ -22,7 +22,7 @@ function getLibelle(immat) {
       if (dataJson.vehicule.length > 0)
         return dataJson.vehicule[0].libelle
 
-      return null;
+      return {};
     })
 }
 
