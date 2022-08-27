@@ -20,6 +20,7 @@ class ResumerCurrentRevision extends React.Component {
 
     return (
       <div className="resumerCurrentRevision">
+        <h1>Resumer</h1>
         <p>Votre véhicule : </p><p>{motorisation}</p>
         <p>Kilométrage du véhicule : </p><p>{km} km</p>
         <p>Tâches à réaliser :</p>
