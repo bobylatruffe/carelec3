@@ -27,10 +27,13 @@ router.post("/addUser", (req, resp) => {
   if (addClientId)
     return resp.json({ id: addClientId });
 
-  return resp.status(500).json({message: "Impossible d'ajouter un utilisateur"})
+  return resp.status(500).json({ message: "Impossible d'ajouter un utilisateur" })
 })
 
 router.post("/:userId/initRevision", (req, resp) => {
+  if (!req.body.dateRevision || !req.body.vehiculeInfos || !req.body.revisionsAFaire)
+    return resp.status(500).json({ message: "Aucune donnée fournit" });
+
   if (!getUserInfos(req.params.userId))
     return resp.status(500).json({ message: "Utilisateur non trouvée" });
 
