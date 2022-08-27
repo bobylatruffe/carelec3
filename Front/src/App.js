@@ -1,6 +1,12 @@
+import { Fragment } from "react";
+import ResumerCurrentRevision from "./components/ResumerCurrentRevision/ResumerCurrentRevision";
+
 function App() {
   return (
-    <h1>Carelec</h1>
+    <Fragment>
+      <h1>Carelec</h1>
+      <ResumerCurrentRevision />
+    </Fragment>
   );
 }
 
