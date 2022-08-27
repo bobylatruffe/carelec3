@@ -13,7 +13,7 @@ router.get("/marques", (_, resp) => {
     return resp.status(200).json(allMarques);
   }
 
-  return resp.status(500).json({});
+  return resp.status(500).json({ message: "Aucune marque trouvée" });
 });
 
 router.get("/:marque", (req, resp) => {
@@ -23,7 +23,7 @@ router.get("/:marque", (req, resp) => {
   if (allModelsFromMarque.length != 0)
     return resp.json(allModelsFromMarque)
 
-  return resp.status(500).json({});
+  return resp.status(500).json({message: "Aucun modèle pour cette marque"});
 });
 
 router.get("/:marque/:modele/", (req, resp) => {
@@ -34,7 +34,7 @@ router.get("/:marque/:modele/", (req, resp) => {
   if (allMotorsFromMarqueModelTab.length != 0)
     return resp.json(allMotorsFromMarqueModelTab)
 
-  return resp.status(500).json({});
+  return resp.status(500).json({message : "Aucune motorisation trouvée pour la marque et le modèle"});
 });
 
 router.get("/:marque/:modele/:motor", (req, resp) => {
@@ -45,10 +45,10 @@ router.get("/:marque/:modele/:motor", (req, resp) => {
   }
 
   if (req.query.what && (req.query.what !== "km" && req.query.what !== "time"))
-    return resp.status(500).json({});
+    return resp.status(500).json({message : "Le what n'est pas correcte : km || time"});
 
   let revisions = getRevisions(carnetsEntretiensSdd, forReqSdd)
-  if (revisions !== {}) {
+  if (revisions) {
     if (req.query.what === "km")
       return resp.json(revisions.km)
     if (req.query.what === "time")
@@ -56,7 +56,7 @@ router.get("/:marque/:modele/:motor", (req, resp) => {
     return resp.json(revisions);
   }
 
-  return resp.status(500).json({});
+  return resp.status(500).json({message : "Aucune révision trouvée pour cette motorisation"});
 });
 
 
