@@ -36,7 +36,7 @@ const fs = require("fs");
 const path = require("path");
 const setCurrentRevision = require("./setCurrentRevision");
 
-function initRevision(id, {dateRevision, vehiculeInfos, revisionsAFaire }) {
+function initRevision(id, { dateRevision, vehiculeInfos, revisionsAFaire }) {
   let revisionProg = {
     [dateRevision]: {},
   };
@@ -72,6 +72,12 @@ function initRevision(id, {dateRevision, vehiculeInfos, revisionsAFaire }) {
 
   if (!setCurrentRevision(id, revisionProg))
     return null;
+
+  try {
+    fs.mkdirSync(path.join(__dirname, "../../data/clients/", id, "imgs"));
+  } catch(err) {
+    
+  }
 
   console.log(`Révision programmé pour l'user ${id}`);
   return true;
