@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const router = express.Router();
+const cors = require("cors");
 
+app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
@@ -13,7 +15,7 @@ const { initCarnetsEntretiensSdd } = require("./mesModules/carnetsEntretiens/ini
 initCarnetsEntretiensSdd();
 
 app.get('/', (req, resp) => {
-  resp.send("ok");
+  resp.json("ok");
 })
 
 const carnetsEntretiensRoute = require("./routes/carnetsEntretiens/carnetsEntretiens");
