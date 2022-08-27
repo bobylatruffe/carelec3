@@ -83,6 +83,9 @@ const path = require("path");
 const setCurrentRevisionEdl = require("../../mesModules/gestionsClients/setCurrentRevisionEdl");
 
 router.post("/:userId/currentRevisionFait", upload.array('img', 10), (req, resp) => {
+  if (!req.body.objFait)
+    return resp.status(500).json({ message: "Aucun objFait n'a été fournit" });
+
   if (!getUserInfos(req.params.userId))
     return resp.status(500).json({ message: "Utilisateur non trouvée" });
 
