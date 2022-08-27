@@ -1,0 +1,24 @@
+.etatDesLieux {
+  /* Pour positionner les croix rouges */
+  position: relative; 
+
+  display: inline-block;
+
+  /* border: solid 1px blue; */
+}
+
+.etatDesLieux img {
+  /* border: solid 1px red; */
+}
+
+.etatDesLieux .croixRouges {
+  position: absolute;
+}
+
+.etatDesLieux .croixRouges:hover {
+  cursor: pointer;
+}
+
+.etatDesLieux .adminMap:hover {
+  cursor: pointer;
+}
