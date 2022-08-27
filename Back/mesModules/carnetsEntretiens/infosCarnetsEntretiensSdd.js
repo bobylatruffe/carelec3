@@ -77,8 +77,6 @@ function getAllMotorsFromMarqueModelTab(sdd, marque, model) {
   return allMotorsFromMarqueModelTab;
 }
 
-// attention contrairement aux autres fonctions de ce module,
-// cette fonction retourne un objet remplit ou vide si erreur.
 function getRevisions(sdd, {marque, model, motor}) {
   let revisions = {};
 
@@ -86,11 +84,12 @@ function getRevisions(sdd, {marque, model, motor}) {
     revisions = sdd[marque][model][motor]
   } catch (err) {
     console.error(`Error: getRevisions() : Impossible de trouver les révisions pour ${marque}--${model}--${motor} -> ${err.message}`);
+    return null; 
   }
 
   if (revisions) return revisions;
 
-  return {};
+  return null;
 }
 
 module.exports = { getAllMarquesTab, getAllModelsTab, getModelsFromMarqueTab, getAllMotorsFromMarqueTab, getAllMotorsTab, getRevisions, getAllMotorsFromMarqueModelTab };
