@@ -1,3 +1,46 @@
+import { getAddrToCoord } from "../utilitaires/gps"
+
+/*
+  Retourner la position du garagiste simulée
+*/
+function getAdminCoord() {
+  return fetch("http://localhost:5000/api/admin/gps")
+    .then(resp => {
+      if (resp.status === 500)
+        return Promise.reject("Plus de coord");
+
+      return resp.json();
+    })
+}
+
+/*
+  Initialiser les posistions du garagiste simulée
+*/
+function initAdminCoord(ouAllerAdresse) {
+  return fetch(`http://localhost:5000/api/admin/gps/30 RUE DE LYON 67640/${ouAllerAdresse}`);
+}
+
+/*
+  Retourner les coordonées de l'adresse postable de l'user id
+*/
+
+function getUserAdressCoord(id) {
+  return getUserInfos(id)
+    .then(userInfos => userInfos.addrPost + " " + userInfos.ville)
+    .then(adresse => {
+      initAdminCoord(adresse); // pour simulation des points GPS
+      return getAddrToCoord(adresse)
+    })
+}
+
+/*
+  Retourner toutes les informations d'un user id
+*/
+function getUserInfos(id) {
+  return fetch(`http://localhost:5000/api/user/${id}`)
+    .then(resp => resp.json())
+}
+
 /*
   Retourner la propriétée fait d'une révision en cours pour l'user id.
 */
@@ -80,4 +123,4 @@ function getCurrentResumer(id) {
     })
 }
 
-export { getCurrentResumer, getCurrentResumerSimple, getCurrentResumerEdl, setCurrentRevisionEdl, getCurrentResumerFait };
+export { getCurrentResumer, getCurrentResumerSimple, getCurrentResumerEdl, setCurrentRevisionEdl, getCurrentResumerFait, getUserAdressCoord, getAdminCoord };

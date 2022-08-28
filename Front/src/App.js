@@ -2,7 +2,8 @@ import { Fragment } from "react";
 
 // import ResumerCurrentRevision from "./components/ResumerCurrentRevision/ResumerCurrentRevision";
 // import EtatDesLieux from "./components/EtatDesLieux/EtatDesLieux";
-import Fait from "./components/Fait/Fait";
+// import Fait from "./components/Fait/Fait";
+import Geoloc from "./components/Geoloc/Geoloc";
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <h1>Carelec</h1>
       {/* <ResumerCurrentRevision />
       <EtatDesLieux type="pickUp" admin={true} /> */}
-      <Fait />
+      {/* <Fait /> */}
+      <Geoloc />
     </Fragment>
   );
 }
