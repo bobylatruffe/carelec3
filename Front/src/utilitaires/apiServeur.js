@@ -1,11 +1,24 @@
 /*
+  Retourner la propriétée fait d'une révision en cours pour l'user id.
+*/
+function getCurrentResumerFait(id) {
+  return getCurrentResumer(id)
+    .then(currentRevision => {
+      currentRevision = currentRevision[Object.keys(currentRevision)[0]];
+      return currentRevision.fait;
+    })
+    .catch(err => console.log("Erreur: getCurrentResumerFait()"));
+}
+
+/*
   Mettre à jour l'état des lieux d'une révision courante.
 */
 function setCurrentRevisionEdl(id, type, croixRouges) {
   let toJsonSend = {
     type,
     newValue: {
-      realiserLe: new Date().toLocaleString("fr-FR").replace(/\/:/g, ''),
+      realiserLe: new Date().toLocaleString("fr-FR"),
+      // realiserLe: new Date().toLocaleString("fr-FR").replace(/\/:/g, ''),
       croixRouges: [croixRouges]
     }
   }
@@ -67,4 +80,4 @@ function getCurrentResumer(id) {
     })
 }
 
-export { getCurrentResumer, getCurrentResumerSimple, getCurrentResumerEdl, setCurrentRevisionEdl };
+export { getCurrentResumer, getCurrentResumerSimple, getCurrentResumerEdl, setCurrentRevisionEdl, getCurrentResumerFait };

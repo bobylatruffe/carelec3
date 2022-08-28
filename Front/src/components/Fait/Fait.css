@@ -1,0 +1,38 @@
+.fait {
+  /* border: solid 1px red; */
+}
+
+.fait img {
+  width: 100px;
+  margin: 10px;
+}
+
+.fait .fait-separator {
+  border: solid 1px rgb(202, 202, 202);
+  width: 400px;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.fait .fait-img-zoom {
+  background-color: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+}
+
+.fait .fait-img-zoom img {
+  width: 700px;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.fait .fait-img-zoom button {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+}
