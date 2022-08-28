@@ -65,4 +65,13 @@ router.get("/:userId/imgs/:img", (req, resp) => {
   resp.sendFile(pathImg);
 });
 
+router.get("/:userId", (req, resp) => {
+  const userInfos = getUserInfos(req.params.userId);
+
+  if (!userInfos)
+    return resp.status(500).json({ message: "utilisateur non trouvée" });
+
+  return resp.json(userInfos);
+});
+
 module.exports = router;
