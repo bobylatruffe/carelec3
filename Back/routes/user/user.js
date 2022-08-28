@@ -18,6 +18,7 @@ const addClient = require("../../mesModules/gestionsClients/addClient");
 
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 
 // il faut protéger cette api par un captcha !!!
 // je sais pas encore s'il le faut pour le front ou ici ...
@@ -56,6 +57,12 @@ router.get("/:userId/currentRevision", (req, resp) => {
     return resp.json(currentRevision);
 
   return resp.status(500).json({ message: "Impossible de trouver une révision programmé" });
+});
+
+router.get("/:userId/imgs/:img", (req, resp) => {
+  const pathImg = path.join(__dirname, "../../data/clients", req.params.userId, "imgs", req.params.img);
+
+  resp.sendFile(pathImg);
 });
 
 module.exports = router;
