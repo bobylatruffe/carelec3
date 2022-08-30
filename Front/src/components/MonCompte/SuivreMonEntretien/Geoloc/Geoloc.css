@@ -1,0 +1,25 @@
+#map1 {
+  height: 400px;
+  width: 400px;
+  margin: auto;
+}
+#map2 {
+  height: 400px;
+  width: 400px;
+}
+
+.Geoloc {
+  width: 400px;
+  padding: 50px;
+  border: solid 1px gray;
+  text-align: center;
+  position: relative;
+  left: 100%;
+  transform: translateX(-100%);
+}
+
+.Geoloc2 {
+  /* border: solid 1px red; */
+  left: 0%;
+  transform: translateX(0%);
+}

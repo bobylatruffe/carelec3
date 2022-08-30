@@ -28,9 +28,19 @@ function getUserAdressCoord(id) {
   return getUserInfos(id)
     .then(userInfos => userInfos.addrPost + " " + userInfos.ville)
     .then(adresse => {
-      initAdminCoord(adresse); // pour simulation des points GPS
+      // initAdminCoord(adresse); // pour simulation des points GPS
       return getAddrToCoord(adresse)
     })
+}
+
+/* 
+  Retourner l'adresse de l'user id
+*/
+
+function getUserAdress(id) {
+  return getUserInfos(id)
+    .then(userInfos => userInfos.addrPost + " " + userInfos.ville)
+    .then(adresse => adresse)
 }
 
 /*
@@ -107,7 +117,7 @@ function getCurrentResumerSimple(id) {
         aFaire: currentRevision.aFaire
       }
     })
-    .catch(err => console.log("Erreur: getCurrentResumerSimple()"));
+    .catch(err => Promise.reject("lol"));
 }
 
 /*
@@ -123,4 +133,4 @@ function getCurrentResumer(id) {
     })
 }
 
-export { getCurrentResumer, getCurrentResumerSimple, getCurrentResumerEdl, setCurrentRevisionEdl, getCurrentResumerFait, getUserAdressCoord, getAdminCoord };
+export { getCurrentResumer, getCurrentResumerSimple, getCurrentResumerEdl, setCurrentRevisionEdl, getCurrentResumerFait, getUserAdressCoord, getAdminCoord, getUserInfos, getUserAdress, initAdminCoord };

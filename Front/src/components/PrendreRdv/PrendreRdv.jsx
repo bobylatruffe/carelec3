@@ -40,8 +40,6 @@ function PrendreRdv() {
     // })
   }
 
-  console.log(location.state)
-
   return (
     <div>
       <h1>Prendre rdv</h1>

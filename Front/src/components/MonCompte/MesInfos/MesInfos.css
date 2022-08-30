@@ -1,0 +1,27 @@
+.mesinfos-container {
+  /* border: solid 1px red; */
+
+  width: 400px;
+  padding: 30px;
+  margin: auto;
+}
+
+.mesinfos-container-info {
+  /* border:solid 1px red; */
+  height: 30px;
+}
+
+.mesinfos-container .label {
+  display: inline-block;
+  width: 200px;
+  text-align: right;
+  
+
+  /* border: solid 1px red */
+}
+
+.mesinfos-container .value {
+  display: inline-block;
+  margin-left: 10px;
+  font-weight: 700;
+}

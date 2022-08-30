@@ -1,8 +1,10 @@
 import { useState } from "react"
-import { useLocation, useNavigate } from "react-router-dom";
+import { createPath, useLocation, useNavigate } from "react-router-dom";
 
 
 import hash from "../../utilitaires/hash";
+
+import "./Connexion.css";
 
 function Connexion() {
   const [email, setEmail] = useState('bozlak.fatih@gmail.com');
@@ -35,27 +37,31 @@ function Connexion() {
             userId: userId,
           }
 
-          console.log(location.state);
-
           navigate("/prendrerdv", { state: location.state })
         } else
-          navigate("/moncompte")
+          navigate("/moncompte", {
+            state: {
+              userId,
+            }
+          })
       })
   }
 
+  console.log(location.state);
+
   const handlerOnClickSignUp = () => {
-    navigate("/signup");
+    navigate("/signup", { state: location.state });
   }
 
   return (
-    <div>
+    <div className="connexion">
       <form>
-        <label>Email :
-          <input type="email" required onChange={handlerOnChangeEmail}></input>
-        </label>
-        <label>Portable :
-          <input type="text" required onChange={handlerOnChangePortable}></input>
-        </label>
+        <label htmlFor="email">Email :</label>
+        <input id="email" type="email" required onChange={handlerOnChangeEmail} placeholder="bozlak.fatih@gmail.com"></input>
+        <br />
+        <label htmlFor="portable">Portable :</label>
+        <input id="portable" type="text" required onChange={handlerOnChangePortable}></input>
+        <br />
         <button onClick={handlerOnClickConnexion}>Connexion</button>
       </form>
       <button onClick={handlerOnClickSignUp}>Créer un compte</button>

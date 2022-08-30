@@ -123,6 +123,7 @@ router.get("/gps/:start/:arrival", async (req, resp) => {
     Je viens d'apprendre cette nouvelle syntaxe afin pour les promises (await);
     Vraiment 1000 fois plus ergonomique de utilisée then()
   */
+  simulationGaragisteCoordsTab = [];
   const startCoord = await getAddrToCoord(req.params.start);
   const arrivalCoord = await getAddrToCoord(req.params.arrival);
   

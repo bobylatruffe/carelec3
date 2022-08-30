@@ -16,7 +16,7 @@ class EtatDesLieux extends React.Component {
   }
 
   componentDidMount = () => {
-    getCurrentResumerEdl(148552793)
+    getCurrentResumerEdl(this.props.userId)
       .then(etatDesLieux => {
         this.setState({ croixRouges: etatDesLieux[this.props.type].croixRouges })
       });
@@ -34,7 +34,7 @@ class EtatDesLieux extends React.Component {
       comment: prompt("Commentaire", "")
     }
 
-    setCurrentRevisionEdl(148552793, this.props.type, newCroixRouge)
+    setCurrentRevisionEdl(this.props.userId, this.props.type, newCroixRouge)
       .then(resp => alert(resp.message))
       .catch(err => alert(err));
 
@@ -46,7 +46,6 @@ class EtatDesLieux extends React.Component {
   }
 
   render() {
-    console.log(this.state)
 
     // afficher les croixRouges
     let keyCroixRouge = 0;
@@ -68,8 +67,8 @@ class EtatDesLieux extends React.Component {
     const admin = this.props.admin
 
     return (
-      <div className="etatDesLieux">
-        <h1>Etat des lieux</h1>
+      <div className={"etatDesLieux " + this.props.classNamePerso}>
+        {/* <h1>Etat des lieux</h1> */}
         <img src={cotesConducteur} useMap="#image-map-cotesConducteur" alt="" />
         <map
           name="image-map-cotesConducteur"

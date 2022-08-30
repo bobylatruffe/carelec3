@@ -1,0 +1,30 @@
+.menu {
+  background-color: black;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.menu .menu-item {
+  /* border: solid 1px gray; */
+  display: inline-block;
+  color: white;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.menu img {
+  width: 150px;
+}
+
+.menu .menu-center {
+  /* border: solid 1px red; */
+  display: inline-block;
+  position: absolute;
+  top : 35px;
+  left: 50%;
+  transform: translateX(-50%);
+}

@@ -1,5 +1,10 @@
 .fait {
-  /* border: solid 1px red; */
+  border: solid 1px gray;
+  width: 400px;
+  padding: 50px;
+  position: relative;
+  left: 100%;
+  transform: translateX(-100%);
 }
 
 .fait img {

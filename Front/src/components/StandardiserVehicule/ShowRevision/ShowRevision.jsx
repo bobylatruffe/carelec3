@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import { getRevision } from "../../utilitaires/apiServeurStand";
+import { getRevision } from "../../../utilitaires/apiServeurStand";
 
 function ShowRevision() {
   const location = useLocation();

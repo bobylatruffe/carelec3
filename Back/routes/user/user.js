@@ -15,6 +15,7 @@ const getUserInfos = require("../../mesModules/gestionsClients/getUserInfos");
 const getCurrentRevision = require("../../mesModules/gestionsClients/getCurrentRevision")
 const initRevision = require("../../mesModules/gestionsClients/initRevision");
 const addClient = require("../../mesModules/gestionsClients/addClient");
+const updateVehiculeInfosUser = require("../../mesModules/gestionsClients/updateVehiculeInfosUser");
 
 const express = require("express");
 const router = express.Router();
@@ -35,15 +36,22 @@ router.post("/:userId/initRevision", (req, resp) => {
   if (!req.body.dateRevision || !req.body.vehiculeInfos || !req.body.revisionsAFaire)
     return resp.status(500).json({ message: "Aucune donnée fournit" });
 
-  if (!getUserInfos(req.params.userId))
+  const userInfos = getUserInfos(req.params.userId)
+  if (!userInfos)
     return resp.status(500).json({ message: "Utilisateur non trouvée" });
 
 
   if (getCurrentRevision(req.params.userId))
     return resp.status(500).json({ message: "Déjà une révision programmé" });
 
+    console.log(userInfos)
+    userInfos.vehiculeInfos = req.body.vehiculeInfos;
+    console.log(userInfos);
+    updateVehiculeInfosUser(req.params.userId, userInfos);
+
   if (initRevision(req.params.userId, req.body))
     return resp.json({ message: "Revision programmé" });
+
 
   return resp.status(500).json({ message: "Impossible d'initialiser la révision" })
 })

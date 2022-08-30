@@ -1,37 +1,41 @@
 import { Fragment } from "react";
 import { Route, Routes } from "react-router-dom";
 
-import ResumerCurrentRevision from "./components/ResumerCurrentRevision/ResumerCurrentRevision";
-import EtatDesLieux from "./components/EtatDesLieux/EtatDesLieux";
-import Fait from "./components/Fait/Fait";
-import Geoloc from "./components/Geoloc/Geoloc";
-import StandardiserVehicule from "./components/StandardiserVehicule/StandardiserVehicule";
-import ShowRevision from "./components/ShowRevision/ShowRevision";
+import "./App.css";
+
 import Connexion from "./components/Connexion/Connexion";
-import PrendreRdv from "./components/PrendreRdv/PrendreRdv";
-import Merci from "./components/Merci/Merci";
 import MonCompte from "./components/MonCompte/MonCompte";
-import SignUp from "./components/SignUp/SignUp";
+import MesInfos from "./components/MonCompte/MesInfos/MesInfos"
+import Historique from "./components/MonCompte/Historique/Historique";
+import MaVoiture from "./components/MonCompte/MaVoiture/MaVoiture";
+import SuivreMonEntretien from "./components/MonCompte/SuivreMonEntretien/SuivreMonEntretien";
+import StandardiserVehicule from './components/StandardiserVehicule/StandardiserVehicule';
+import ShowRevision from "./components/StandardiserVehicule/ShowRevision/ShowRevision";
+import PrendreRdv from "./components/PrendreRdv/PrendreRdv"
+import Menu from "./components/Menu/Menu";
+import SignUp from "./components/MonCompte/SignUp/SignUp";
 
 function App() {
   return (
-    <Fragment>
-      <h1>Carelec</h1>
-      {/* <ResumerCurrentRevision />
-      <EtatDesLieux type="pickUp" admin={true} />
-      <Fait />
-      <Geoloc /> */}
-      <Routes>
-        <Route exact path="/" element={<StandardiserVehicule />} />
-        <Route path="/propositionRevision" element={<ShowRevision />} />
-        <Route path="/connexion" element={<Connexion />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/prendrerdv" element={<PrendreRdv />} />
-        <Route path="/merci" element={<Merci />} />
-        <Route path="/moncompte" element={<MonCompte />} />
-      </Routes>
+    <div className="main-for-menu">
+      <Menu />
+      <div className="main">
 
-    </Fragment>
+        <Routes>
+          <Route path="/" element={<StandardiserVehicule />} />
+          <Route path="propositionRevision" element={<ShowRevision />} />
+          <Route path="prendrerdv" element={<PrendreRdv />} />
+          <Route path="connexion" element={<Connexion />} />
+          <Route path="signup" element={<SignUp />} />
+          <Route path="moncompte" element={<MonCompte />}>
+            <Route path="mesinfos" element={<MesInfos />} />
+            <Route path="mavoiture" element={<MaVoiture />} />
+            <Route path="suivremonentretien" element={<SuivreMonEntretien />} />
+            <Route path="historique" element={<Historique />} />
+          </Route>
+        </Routes>
+      </div>
+    </div>
   );
 }
 

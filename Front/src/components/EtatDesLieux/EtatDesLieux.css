@@ -1,10 +1,18 @@
 .etatDesLieux {
   /* Pour positionner les croix rouges */
-  position: relative; 
+  position: relative;
 
   display: inline-block;
 
-  /* border: solid 1px blue; */
+  padding: 50px;
+  text-align: center;
+  width: 400px;
+  border: solid 1px gray;
+}
+
+.etatDesLieux2 {
+  left: 100%;
+  transform: translateX(-100%);
 }
 
 .etatDesLieux img {

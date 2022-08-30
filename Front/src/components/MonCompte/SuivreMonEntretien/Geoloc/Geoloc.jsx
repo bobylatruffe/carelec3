@@ -1,8 +1,8 @@
 import React from "react";
 import Leaflet, { LatLng } from "leaflet";
 
-import { getUserAdressCoord, getAdminCoord } from "../../utilitaires/apiServeur"
-import { getPolyline } from "../../utilitaires/gps";
+import { getUserAdressCoord, getAdminCoord, getUserAdress, initAdminCoord } from "../../../../utilitaires/apiServeur"
+import { getPolyline } from "../../../../utilitaires/gps";
 import polylineEncoded from "polyline-encoded";
 
 import "./Geoloc.css"
@@ -15,7 +15,7 @@ class Geoloc extends React.Component {
   mettreAJourPolyline = async (map, garagisteCoord, userCoord) => {
     let polyline = await getPolyline([garagisteCoord[1], garagisteCoord[0]], userCoord);
     polyline = polylineEncoded.decode(polyline);
-    
+
     if (this.state.oldPolyline)
       this.state.oldPolyline.remove();
 
@@ -45,9 +45,9 @@ class Geoloc extends React.Component {
   }
 
   async componentDidMount() {
-    const userCoord = await getUserAdressCoord(148552793)
+    const userCoord = await getUserAdressCoord(this.props.userId)
 
-    let map = Leaflet.map("map").setView([userCoord[1], userCoord[0]], 10);
+    let map = Leaflet.map(this.props.map).setView([userCoord[1], userCoord[0]], 10);
     Leaflet.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { // voir doc Leaflet
       attribution: '© OpenStreetMap'
     }).addTo(map);
@@ -55,6 +55,15 @@ class Geoloc extends React.Component {
     const userMarker = Leaflet.marker([userCoord[1], userCoord[0]]);
     userMarker.addTo(map);
     // userMarker.bindPopup("Le garagiste est en route...").openPopup();
+    this.setState({userCoord, map,});
+  }
+
+  handlerOnClick = async (e) => {
+    e.target.disabled = true;
+    
+    const {userCoord, map} = this.state;
+
+    await initAdminCoord(await getUserAdress(this.props.userId));
 
     let garagisteCoord = await getAdminCoord();
     let garagisteMarker = Leaflet.marker([garagisteCoord[0], garagisteCoord[1]]);
@@ -67,9 +76,11 @@ class Geoloc extends React.Component {
 
   render() {
     return (
-      <div className="Geoloc">
-        <h1>Geoloc</h1>
-        <div id="map"></div>
+      <div className={"Geoloc " + this.props.classNamePerso}>
+        {/* <h1>Geoloc</h1> */}
+        <button onClick={this.handlerOnClick}>Démarrer la simulation <br />(garagiste viens récupérer mon véhicule)</button>
+        <br/><br/>
+        <div id={this.props.map}></div>
       </div>
     )
   }

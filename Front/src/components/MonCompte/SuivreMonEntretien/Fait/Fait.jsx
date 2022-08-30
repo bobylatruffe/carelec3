@@ -1,6 +1,6 @@
 import React from "react";
 
-import { getCurrentResumerFait } from "../../utilitaires/apiServeur";
+import { getCurrentResumerFait } from "../../../../utilitaires/apiServeur";
 
 import "./Fait.css"
 
@@ -11,7 +11,7 @@ class Fait extends React.Component {
   }
 
   componentDidMount = () => {
-    getCurrentResumerFait(148552793)
+    getCurrentResumerFait(this.props.userId)
       .then(fait => {
         this.setState({
           fait,
@@ -24,14 +24,12 @@ class Fait extends React.Component {
       imgZoom:
         <div className="fait-img-zoom">
           <img src={e.target.src} alt="" />
-          <button onClick={() => this.setState({imgZoom: null})}>Fermer</button>
+          <button onClick={() => this.setState({ imgZoom: null })}>Fermer</button>
         </div>
     })
   }
 
   render() {
-    console.log(this.state);
-
     const renderFait =
       this.state.fait.map(elem => {
         return (
@@ -56,7 +54,7 @@ class Fait extends React.Component {
 
     return (
       <div className="fait">
-        <h1>Fait</h1>
+        {/* <h1>Fait</h1> */}
         {renderFait}
         {this.state.imgZoom}
       </div>

@@ -1,13 +1,23 @@
 import { useEffect } from "react";
 import { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import StandardiserVehicule from "../StandardiserVehicule/StandardiserVehicule";
+import StandardiserVehicule from "../../StandardiserVehicule/StandardiserVehicule";
 
 function SignUp() {
+  
+  const location = useLocation();
+
+  console.log(location.state)
 
   const [userInfos, setUserInfos] = useState({});
   const [vehiculeInfos, setVehiculeInfos] = useState(null);
+
+  useEffect(() => {
+    if (location.state === null)
+      return;
+    setVehiculeInfos(location.state.vehiculeInfos)
+  }, [])
 
   useEffect(() => {
     setUserInfos({
@@ -17,7 +27,6 @@ function SignUp() {
   }, [vehiculeInfos]);
 
   const handlerOnChange = (e) => {
-    console.log(e.target.name)
     setUserInfos({
       ...userInfos,
       [e.target.name]: e.target.value,
@@ -40,17 +49,20 @@ function SignUp() {
       },
       body: JSON.stringify(userInfos, null, 2)
     })
-    .then(resp => {
-      if(resp.status === 500) {
-        // j'aurai du prévoir une gestion des erreurs avec des new Error() pour les faires
-        // remonter, et réussir à les affichers la !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        window.alert("Impossible de créer votre compte ...")
-        return null;
-      }
+      .then(resp => {
+        if (resp.status === 500) {
+          // j'aurai du prévoir une gestion des erreurs avec des new Error() pour les faires
+          // remonter, et réussir à les affichers la !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          window.alert("Impossible de créer votre compte ...")
+          return null;
+        }
 
-      window.alert("Félicitation votre compte est crée");
-      navigate("/moncompte");
-    })
+        window.alert("Félicitation votre compte est crée");
+        if(location.state.revisionsAFaire !== null) {
+          navigate("/connexion", {state: location.state});
+        }
+        navigate("/moncompte");
+      })
   }
 
   return (
@@ -89,7 +101,7 @@ function SignUp() {
           <input type="text" name="portable" id="portable" required="required" onChange={handlerOnChange} />
         </label>
 
-        <StandardiserVehicule callback={(data) => setVehiculeInfos(data)} />
+        {vehiculeInfos === null ? <StandardiserVehicule callback={(data) => setVehiculeInfos(data)} /> : null}
 
         <button>Créer mon compte</button>
       </form>
