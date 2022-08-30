@@ -18,7 +18,7 @@ function Connexion() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const handlerOnClick = (e) => {
+  const handlerOnClickConnexion = (e) => {
     e.preventDefault();
 
     const userId = hash(portable + email);
@@ -43,6 +43,10 @@ function Connexion() {
       })
   }
 
+  const handlerOnClickSignUp = () => {
+    navigate("/signup");
+  }
+
   return (
     <div>
       <form>
@@ -52,8 +56,9 @@ function Connexion() {
         <label>Portable :
           <input type="text" required onChange={handlerOnChangePortable}></input>
         </label>
-        <button onClick={handlerOnClick}>Connexion</button>
+        <button onClick={handlerOnClickConnexion}>Connexion</button>
       </form>
+      <button onClick={handlerOnClickSignUp}>Créer un compte</button>
     </div>
   )
 }

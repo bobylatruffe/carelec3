@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { getMarques, getModels, getMotors } from "../../utilitaires/apiServeurStand";
 
-function StandardiserVehiculeManual() {
+function StandardiserVehiculeManual(props) {
   const [marquesTab, setMarquesTab] = useState([]);
   const [currentMarque, setCurrentMarque] = useState("");
 
@@ -58,11 +58,29 @@ function StandardiserVehiculeManual() {
   }
 
   const navigate = useNavigate();
-  const handlerOnClick = () => {
+  const handlerOnClick = (e) => {
+    e.preventDefault();
+    
     if (currentMotor) {
       const userImmat = prompt("Donnez nous votre plaque d'immatriculation : ");
       // faut vérifier que c'est des chiffres !
       const km = prompt("Quel est le kilométrage de votre véhicule ? ");
+
+      if (props.callback) {
+        props.callback({
+          "immat": userImmat,
+          "km": km,
+          "libelleStandardise": {
+            "marque": currentMarque,
+            "modele": currentModel,
+            "motorisation": currentMotor,
+            "cv": currentMotor.split(" ").slice(-1)[0].slice(0, -2),
+          }
+        })
+
+        return true;
+      }
+
       navigate("/propositionRevision", {
         state: {
           "immat": userImmat,

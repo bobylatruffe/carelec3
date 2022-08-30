@@ -11,6 +11,7 @@ import Connexion from "./components/Connexion/Connexion";
 import PrendreRdv from "./components/PrendreRdv/PrendreRdv";
 import Merci from "./components/Merci/Merci";
 import MonCompte from "./components/MonCompte/MonCompte";
+import SignUp from "./components/SignUp/SignUp";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route exact path="/" element={<StandardiserVehicule />} />
         <Route path="/propositionRevision" element={<ShowRevision />} />
         <Route path="/connexion" element={<Connexion />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/prendrerdv" element={<PrendreRdv />} />
         <Route path="/merci" element={<Merci />} />
         <Route path="/moncompte" element={<MonCompte />} />
