@@ -66,10 +66,6 @@ function addClient(userInfos) {
   for (info in userInfos) {
     if (info === "revisionProgramme" || info === "lastRevision") // il peut juste avoir crée un compte et pas encore eu de révision
       continue;
-    if (userInfos[info] === null | userInfos[info] === undefined | userInfos[info] === "") {
-      clError(`Error: addClient(): le champs ${info} est obligatoire`);
-      return null;
-    }
   }
 
   let { email, portable } = userInfos;

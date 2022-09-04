@@ -40,7 +40,7 @@ router.get("/:marque/:modele/", (req, resp) => {
 router.get("/:marque/:modele/:motor", (req, resp) => {
   let forReqSdd = {
     marque: req.params.marque,
-    model: req.params.modele + ".json",
+    model: req.params.modele,
     motor: req.params.motor,
   }
 

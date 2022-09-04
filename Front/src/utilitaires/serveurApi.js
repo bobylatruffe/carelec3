@@ -137,4 +137,4 @@ function fetchUserInfos(userId) {
     })
 }
 
-export { fetchUserInfos, fetchCurrentRevision, fetchUserAdresse, fetchGaragisteArrive, initGpsSimulateurGaragiste, fetchGaragisteToUserPolyline, setCurrentRevisionEdl, fetchCurrentRevisionEdl, fetchCurrentRevisionFais, fetchRevisionsHistory }
+export { fetchUserInfos, fetchCurrentRevision, fetchUserAdresse, fetchGaragisteArrive, initGpsSimulateurGaragiste, fetchGaragisteToUserPolyline, setCurrentRevisionEdl, fetchCurrentRevisionEdl, fetchCurrentRevisionFais, fetchRevisionsHistory, checkStatusApi }

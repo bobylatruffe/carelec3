@@ -96,4 +96,14 @@ router.get("/:userId/all", (req, resp) => {
   return resp.json({ message: "Aucun historique trouvée" })
 });
 
+const hash = require("../../mesModules/utilitaires/hash");
+router.post("/connexion", (req, resp) => {
+  const tmpUserId = hash(`${req.body.portable}${req.body.email}`);
+  if(!getUserInfos(tmpUserId)) {
+    return resp.status(500).json({message: "Impossible de se connecter avec les identifiants fournis"})
+  }
+
+  return resp.json({userId: tmpUserId})
+});
+
 module.exports = router;
