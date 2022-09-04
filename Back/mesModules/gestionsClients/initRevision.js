@@ -69,6 +69,8 @@ function initRevision(id, { dateRevision, vehiculeInfos, revisionsAFaire }) {
   })
 
   currentRevision.fait = revisionsFait;
+  currentRevision.goPickUp = false;
+  currentRevision.goDropUp = false;
 
   if (!setCurrentRevision(id, revisionProg))
     return null;

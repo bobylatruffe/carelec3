@@ -1,0 +1,7 @@
+.fais-container img {
+  width: 200px;
+}
+
+.fais-child {
+  border: solid 1px red;
+}

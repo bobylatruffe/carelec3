@@ -16,6 +16,7 @@ const getCurrentRevision = require("../../mesModules/gestionsClients/getCurrentR
 const initRevision = require("../../mesModules/gestionsClients/initRevision");
 const addClient = require("../../mesModules/gestionsClients/addClient");
 const updateVehiculeInfosUser = require("../../mesModules/gestionsClients/updateVehiculeInfosUser");
+const getAllRevisons = require("../../mesModules/gestionsClients/getAllRevisions");
 
 const express = require("express");
 const router = express.Router();
@@ -44,10 +45,10 @@ router.post("/:userId/initRevision", (req, resp) => {
   if (getCurrentRevision(req.params.userId))
     return resp.status(500).json({ message: "Déjà une révision programmé" });
 
-    console.log(userInfos)
-    userInfos.vehiculeInfos = req.body.vehiculeInfos;
-    console.log(userInfos);
-    updateVehiculeInfosUser(req.params.userId, userInfos);
+  console.log(userInfos)
+  userInfos.vehiculeInfos = req.body.vehiculeInfos;
+  console.log(userInfos);
+  updateVehiculeInfosUser(req.params.userId, userInfos);
 
   if (initRevision(req.params.userId, req.body))
     return resp.json({ message: "Revision programmé" });
@@ -80,6 +81,19 @@ router.get("/:userId", (req, resp) => {
     return resp.status(500).json({ message: "utilisateur non trouvée" });
 
   return resp.json(userInfos);
+});
+
+router.get("/:userId/all", (req, resp) => {
+  const userInfos = getUserInfos(req.params.userId);
+
+  if (!userInfos) {
+    return resp.status(500).json({ message: "utilisateur non trouvée" });
+  }
+  const allRevisions = getAllRevisons(req.params.userId);
+  if (allRevisions)
+    return resp.json(JSON.parse(allRevisions));
+
+  return resp.json({ message: "Aucun historique trouvée" })
 });
 
 module.exports = router;

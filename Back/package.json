@@ -15,6 +15,7 @@
     "jest": "^28.1.x",
     "multer": "^1.4.5-lts.1",
     "node-fetch": "2.0",
-    "polyline-encoded": "^0.0.9"
+    "polyline-encoded": "^0.0.9",
+    "socket.io": "^4.5.2"
   }
 }

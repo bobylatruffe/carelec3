@@ -110,11 +110,13 @@ router.post("/:userId/currentRevisionFait", upload.array('img', 10), (req, resp)
   return resp.status(500).json({ message: "Impossible de mette à jours les 'fait'" });
 });
 
+
+
 /*
   POUR SIMULATION !
   Va permetre de définir les coordonées GPS jusqu'à l'arrivé chez le client.
 */
-const {getAddrToCoord, getPolyline} = require("../../mesModules/utilitaires/gps");
+const { getAddrToCoord, getPolyline } = require("../../mesModules/utilitaires/gps");
 const polylineEncoded = require("polyline-encoded");
 let simulationGaragisteCoordsTab = [];
 
@@ -123,14 +125,38 @@ router.get("/gps/:start/:arrival", async (req, resp) => {
     Je viens d'apprendre cette nouvelle syntaxe afin pour les promises (await);
     Vraiment 1000 fois plus ergonomique de utilisée then()
   */
-  simulationGaragisteCoordsTab = [];
-  const startCoord = await getAddrToCoord(req.params.start);
-  const arrivalCoord = await getAddrToCoord(req.params.arrival);
-  
-  const polyline =  await getPolyline(startCoord, arrivalCoord);
-  simulationGaragisteCoordsTab = polylineEncoded.decode(polyline);
 
-  return resp.json({simulationGaragisteCoordsTab, polyline,});
+  let startCoord = null;
+  let arrivalCoord = null;
+
+  let polyline = null;
+
+  if (req.query.polyline !== "true") {
+    simulationGaragisteCoordsTab = [];
+    startCoord = await getAddrToCoord(req.params.start);
+    arrivalCoord = await getAddrToCoord(req.params.arrival);
+
+    polyline = await getPolyline(startCoord, arrivalCoord);
+
+    simulationGaragisteCoordsTab = polylineEncoded.decode(polyline);
+
+    return resp.json({ simulationGaragisteCoordsTab, polyline, });
+    
+  } else {
+    if (simulationGaragisteCoordsTab.length === 0)
+      return resp.status(500).json({ message: "Plus de coordonnées dispo" })
+
+    startCoord = simulationGaragisteCoordsTab.shift();
+    arrivalCoord = await getAddrToCoord(req.params.arrival);
+
+    polyline = await getPolyline(startCoord, arrivalCoord);
+    polyline = polylineEncoded.decode(polyline);
+
+    return resp.json({
+      garagisteCoords: startCoord,
+      polylineCoords: polyline,
+    })
+  }
 });
 
 /*
@@ -138,8 +164,8 @@ router.get("/gps/:start/:arrival", async (req, resp) => {
   Va simuler l'obtention des coordonées GPS du garagiste à chaque appel.
 */
 router.get("/gps", (req, resp) => {
-  if(simulationGaragisteCoordsTab.length === 0)
-    return resp.status(500).json({message: "Plus de coordonnées dispo"})
+  if (simulationGaragisteCoordsTab.length === 0)
+    return resp.status(500).json({ message: "Plus de coordonnées dispo" })
 
   return resp.json(simulationGaragisteCoordsTab.shift());
 });
