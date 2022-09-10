@@ -1,0 +1,38 @@
+.notregarage {
+  // overflow-x: hidden;
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  // border: solid 1Px red;
+
+  .notregarageN {
+    display: flex;
+    align-items: center;
+
+    .contentTxt {
+      width: 500px;
+      padding: 40px;
+      // border: solid 1px red;
+
+
+    }
+
+    p {
+      text-align: justify;
+    }
+
+    .left {
+      border-left: solid 1px black;
+      direction: rtl;
+    }
+
+    .right {
+      border-right: solid 1px black;
+    }
+
+    img {
+      width: 580px;
+    }
+  }
+}

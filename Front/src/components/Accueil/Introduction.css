@@ -1,0 +1,87 @@
+.Introduction {
+  /* border: solid 1px red; */
+  /* height: 80vh; */
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 40px;
+}
+
+.Intro-left {
+  display: inline-block;
+  width: 400px;
+  height: 320px;
+
+  position: relative;
+
+  background-image: url("./accueil-left.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* border: solid 1Px red; */
+}
+
+.Intro-left .Main-dehors {
+  background: no-repeat url("./main\ dehors.png");
+  position: absolute;
+  left: -190px;
+  top: 0px;
+  /* border: solid 1px red; */
+  width: 353px;
+  height: 200px;
+}
+
+.Decoration {
+  /* border: solid 1px red; */
+  position: absolute;
+  top: 70px;
+  left: 46%;
+  /* width: 300px; */
+  height: 100px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.Decoration .Arrow {
+  width: 62px;
+  height: 74px;
+  background-image: url("./introduction-arrow.png");
+  background-repeat: no-repeat;
+  /* border: solid 1px red; */
+}
+
+.Decoration p {
+  /* border: solid 1Px red; */
+  margin: 0px;
+  width: 300px;
+  position: relative;
+  top: -20px;
+  left: 20px;
+  font-family: "Grape Nuts";
+  font-size: 16px;
+  font-weight: 700;
+  z-index: 20;
+}
+
+.SearchWithImmat {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  z-index: 10;
+}
+
+.Intro-right {
+  display: inline-block;
+  width: 400px;
+  height: 320px;
+
+  position: relative;
+  left: 19px;
+  top: 17px;
+
+  background-image: url("./accueil-right.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  /* border: solid 1Px red; */
+}

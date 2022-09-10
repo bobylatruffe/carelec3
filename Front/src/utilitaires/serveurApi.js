@@ -7,6 +7,12 @@ async function checkStatusApi(status, resultJson) {
   return result;
 }
 
+async function fetchAvis() {
+  return fetch("http://localhost:5000/api/avis")
+    .then(response => checkStatusApi(response.status, response.json()))
+    .then(avis => avis)
+}
+
 function fetchRevisionsHistory(userId) {
   return fetch(`http://localhost:5000/api/user/${userId}/all`)
     .then(result => checkStatusApi(result.status, result.json()))
@@ -137,4 +143,4 @@ function fetchUserInfos(userId) {
     })
 }
 
-export { fetchUserInfos, fetchCurrentRevision, fetchUserAdresse, fetchGaragisteArrive, initGpsSimulateurGaragiste, fetchGaragisteToUserPolyline, setCurrentRevisionEdl, fetchCurrentRevisionEdl, fetchCurrentRevisionFais, fetchRevisionsHistory, checkStatusApi }
+export { fetchUserInfos, fetchCurrentRevision, fetchUserAdresse, fetchGaragisteArrive, initGpsSimulateurGaragiste, fetchGaragisteToUserPolyline, setCurrentRevisionEdl, fetchCurrentRevisionEdl, fetchCurrentRevisionFais, fetchRevisionsHistory, checkStatusApi, fetchAvis}

@@ -1,0 +1,47 @@
+.PresentationN {
+  /* border: solid 1px blue; */
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.PresentationN p {
+  text-align: justify;
+  font-weight: 400;
+  position: relative;
+  z-index: 10;
+}
+
+.PresentationN img {
+  width: 500px;
+}
+
+.PresentationNLeft .content {
+  padding-right: 50px;
+}
+
+.PresentationNLeft .deco {
+  /* border: solid 1px red; */
+  width: 500px;
+  position: absolute;
+  right: -250px;
+  bottom: 0px;
+  /* opacity: 50%; */
+  overflow-x: hidden;
+}
+
+.PresentationNRight .content {
+  padding-left: 50px;
+}
+
+.PresentationNRight .deco {
+  /* border:solid 1px red; */
+  width: 500px;
+  position: absolute;
+  left: -250px;
+  bottom: 0px;
+  /* opacity: 50%; */
+}

@@ -1,0 +1,53 @@
+.Avis {
+  /* border: solid 1px red; */
+}
+
+.Avis-content {
+  padding-bottom: 150px;
+  /* border: solid 1px red; */
+  text-align: center;
+}
+
+.Avis-content .deco {
+  height: 300px;
+  background-image: url("./avis.png");
+  background-repeat: no-repeat;
+  background-position: 0px -150px;
+  margin-bottom: 100px;
+}
+
+.Avis-center {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* border: solid 1px blue; */
+  height: 300px;
+}
+
+.Avis-content h2 {
+  /* margin-bottom: 60px; */
+}
+
+.Avis-center p {
+  width: 600px;
+}
+
+.Avis-center .quoteRougeLeft {
+  position: relative;
+  top: -60px
+}
+
+.Avis-center .quoteRougeRight {
+  position: relative;
+  top: 60px
+}
+
+.Avis-center .simpleArrowLeft:hover,
+.Avis-center .simpleArrowRight:hover {
+  cursor: pointer;
+}
+
+.Avis-center .simpleArrowLeft,
+.Avis-center .simpleArrowRight {
+  
+}
