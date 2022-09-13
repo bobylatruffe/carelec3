@@ -28,7 +28,7 @@ router.post("/addUser", (req, resp) => {
   // ici faut également vérifier le contenu de l'objet req.body ...
   let addClientId = addClient(req.body);
   if (addClientId)
-    return resp.json({ id: addClientId });
+    return resp.json({ userId: `${addClientId}` });
 
   return resp.status(500).json({ message: "Impossible d'ajouter un utilisateur" })
 })
@@ -103,7 +103,7 @@ router.post("/connexion", (req, resp) => {
     return resp.status(500).json({message: "Impossible de se connecter avec les identifiants fournis"})
   }
 
-  return resp.json({userId: tmpUserId})
+  return resp.json({userId: `${tmpUserId}`})
 });
 
 module.exports = router;

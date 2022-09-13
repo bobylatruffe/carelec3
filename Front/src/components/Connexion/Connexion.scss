@@ -1,0 +1,34 @@
+.Connexion {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  width: 1000px;
+  margin: auto;
+  // border: solid 1Px red;
+  display: flex;
+  justify-content: space-between;
+
+  h2,
+  p {
+    width: 400px;
+    text-align: justify;
+  }
+
+  .verticalCenter {
+    // border: solid 1px red;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 40px;
+
+    input {
+      margin-bottom: 5px;
+    }
+
+    button {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+  }
+}

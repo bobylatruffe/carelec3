@@ -1,0 +1,60 @@
+/* Styles css général */
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.red {
+  color: #d00000;
+}
+
+h1 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+h2 {
+  font-weight: 700;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+* {
+  margin: 0px;
+}
+
+button {
+  padding-left: 15px;
+  padding-right: 15px;
+  border: none;
+  box-shadow: 0px 0px 25px rgb(201, 201, 201);
+  height: 46px;
+  background-color: white;
+  font-weight: 900;
+  text-transform: uppercase;
+  /* position: relative;
+  z-index: -20; */
+}
+
+button:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 10px rgb(201, 201, 201);
+}
+
+button:active {
+  background-color: #d00000;
+  color: white;
+}
+
+input {
+  height: 40px;
+  background-color: black;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  padding-left: 10px;
+
+  &:focus {
+    outline: none;
+  }
+}

@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import "./Menu.css";
 
 function Menu() {
+  let userId = sessionStorage.getItem("userId");
+
   return (
     <div className="Menu-main">
       <nav className="Menu-content">
@@ -12,7 +14,13 @@ function Menu() {
         <NavLink to="/estimer" className="Menu-link">Estimer un entretien</NavLink>
         <NavLink to="/aides" className="Menu-link">Aides</NavLink>
         <NavLink to="/contact" className="Menu-link">Contact</NavLink>
-        <NavLink to="/moncompte" className="Menu-compte"></NavLink>
+        {
+          userId ?
+            <NavLink to="/moncompte" className="Menu-compte"></NavLink>
+            :
+            <NavLink to="/connexion" className="Menu-compte"></NavLink>
+        }
+
       </nav>
     </div >
   )

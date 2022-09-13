@@ -1,0 +1,10 @@
+{
+    "nom": "yak",
+    "prenom": "aydin",
+    "dateOfBirth": "2022-09-12",
+    "adressePostale": "16 rue de macon",
+    "cp": "67100",
+    "ville": "strasbourg",
+    "email": "yak@gmail.com",
+    "portable": "0636679200"
+}

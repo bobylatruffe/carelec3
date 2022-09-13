@@ -1,0 +1,36 @@
+.SignUp {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  // border: solid 1px red;
+  width: 1000px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .textual {
+    width: 400px;
+    text-align: justify;
+  }
+
+  label {
+    font-size: 18px;
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+    margin-right: 10px;
+  }
+
+  input {
+    width: 250px;
+  }
+
+  form {
+    text-align: right;
+  }
+
+  button {
+    margin-top: 20px;
+    width: 266px;
+  }
+}
